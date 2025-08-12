@@ -229,21 +229,22 @@
                     </div>
 
                 </div>
-<form action="https://formsubmit.co/heloisesophiatelesdossantos@gmail.com" method="POST" class="mt-8">
+<form action="https://formsubmit.co/heloisesophiatelesdossantos@gmail.com" method="POST">
+
+    <input type="hidden" name="_captcha" value="false">
+
     <h3 class="text-xl font-semibold mb-4">Entre em Contato</h3>
     <div class="space-y-4">
         <input type="text" name="nome" placeholder="Seu Nome" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         <input type="email" name="email" placeholder="Seu E-mail" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         <textarea name="mensagem" placeholder="Sua Mensagem" rows="4" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
         <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition">Enviar Mensagem</button>
-
-            <input type="hidden" name="_next" value="https://helofm.github.io/Cur-culo">
-
-             <input type="hidden" name="_captcha" value="false">
     </div>
 </form>
 
-            </div>
+
+
+             </div>
         </section>
 
         <!-- Rodapé -->
@@ -276,6 +277,30 @@
             });
         });
     </script>
+
+    <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault(); // impede envio automático
+        const form = this;
+
+        // Enviar com Fetch API
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+        }).then(response => {
+            if (response.ok) {
+                // Exibe alerta de sucesso
+                alert("✅ Sua mensagem foi enviada com sucesso!");
+                form.reset(); // limpa o formulário
+            } else {
+                alert("❌ Ocorreu um erro ao enviar. Tente novamente.");
+            }
+        }).catch(() => {
+            alert("❌ Não foi possível enviar a mensagem.");
+        });
+    });
+</script>
+
 </body>
 </html>
 
